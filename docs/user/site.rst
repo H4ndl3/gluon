@@ -21,6 +21,17 @@ site_code
     The code of your community. It is good practice to use the TLD of
     your community here.
 
+site_seed
+    32 bytes of random data, encoded in hexadecimal, used to seed other random
+    values specific to the mesh domain. It must be the same for all nodes of one
+    mesh, but should be different for firmwares that are not supposed to mesh with
+    each other.
+
+    The recommended way to generate a value for a new site is:
+    ::
+
+        echo $(hexdump -n 32 -e '1/1 "%02x"' </dev/urandom)
+
 prefix4 \: optional
     The IPv4 Subnet of your community mesh network in CIDR notation, e.g.
     ::
@@ -114,7 +125,7 @@ wifi24 \: optional
     interface's ESSID. This is the WiFi the clients connect to.
 
     ``mesh`` requires a single parameter, a string, named ``id`` which sets the
-    mesh id, also visible as an open WiFi in some network managers. Usually you 
+    mesh id, also visible as an open WiFi in some network managers. Usually you
     don't want users to connect to this mesh-SSID, so use a cryptic id that no
     one will accidentally mistake for the client WiFi.
 
@@ -284,7 +295,7 @@ mesh_on_wan \: optional
 mesh_on_lan \: optional
     Enables the mesh on the LAN port (``true`` or ``false``).
     ::
-    
+
         mesh_on_lan = true,
 
 poe_passthrough \: optional
